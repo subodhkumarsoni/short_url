@@ -29,9 +29,11 @@ async function handleUserLogin(req, res) {
 
     console.log("JWT TOKEN:", token);
 
-    res.cookie("uid", token);
+    // res.cookie("uid", token);
 
-    return res.redirect("/");
+   return res.json({token});
+
+    // return res.redirect("/");
 }
 
 module.exports = {

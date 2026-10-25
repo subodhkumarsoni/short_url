@@ -2,7 +2,7 @@ const express = require("express");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const { connectToMongoDB } = require('./connect');
-const { restrictToLoggedinUserOnly, checkAuth} = require("./middlewares/auth");
+const { restrictToLoggedinUserOnly, checkAuth } = require("./middlewares/auth");
 const URL = require('./models/url');
 
 const urlRoute = require("./routes/url");
@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 
 app.use("/url", restrictToLoggedinUserOnly, urlRoute);
-app.use("/user",  userRoute);
+app.use("/user", userRoute);
 app.use("/", checkAuth, staticRoute);
 
 app.get('/url/:shortId', async (req, res) => {
@@ -43,6 +43,6 @@ app.get('/url/:shortId', async (req, res) => {
     return res.redirect("https://" + entry.redirectURL);
 });
 
-app.use("/url", restrictToLoggedinUserOnly, urlRoute);
+
 
 app.listen(PORT, () => console.log(`Server started at PORT: ${PORT}`))
